@@ -75,3 +75,23 @@ php artisan tinker
 > \App\Models\User::factory(1000)->create();
 ```
 
+## Database: Seeder
+
+Create seeder
+
+```bash
+php artisan make:seeder DummySeeder
+```
+
+Seed data:
+
+```bash
+php artisan db:seed
+```
+
+Seed data specific to seeder class:
+
+```bash
+php artisan db:seed --class=DummySeeder
+```
+
