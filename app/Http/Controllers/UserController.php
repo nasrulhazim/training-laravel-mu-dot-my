@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         // retrieve all users
-        $users = User::get(); // select * from users
+        $users = User::paginate(); // select * from users
 
         // return users listing with retrieved users.
         return view('users.index', compact('users'));
