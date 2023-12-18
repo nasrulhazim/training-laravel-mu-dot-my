@@ -11,6 +11,6 @@ class HelloWorldController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return 'hello world from invokable controller';
+        return view('hello-world');
     }
 }
