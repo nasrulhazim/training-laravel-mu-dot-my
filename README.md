@@ -43,6 +43,28 @@ laravel new training --git --jet --stack=livewire
   - [ ] located `resources/views`
   - [ ] with `.blade.php` extension
 
+## Vite
+
+Run the following command during development:
+
+```bash
+npm install
+```
+
+Run the Vite:
+
+```bash
+npm run dev
+```
+
+Compile assets for production:
+
+```bash
+npm run build
+```
+
+> You may want to run the build command in production OR commit the `public/builds` in your repository.
+
 ## Database: Factory
 
 ```bash
