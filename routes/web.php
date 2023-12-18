@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HelloWorldController;
 use App\Http\Controllers\HelloWorldMethodController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // define route by closure
@@ -21,18 +22,6 @@ Route::get(
     [HelloWorldMethodController::class, 'show']
 )->name('hello-world-method');
 
-// define by resource controller
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -45,4 +34,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // define by resource controller
+    Route::resource('users', UserController::class);
 });
