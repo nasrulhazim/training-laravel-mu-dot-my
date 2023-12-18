@@ -1,17 +1,31 @@
 <?php
 
+use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\HelloWorldMethodController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// define route by closure
+Route::get('/hello-world', function() {
+    return 'hello-world';
+});
+
+// define by invokable controller
+Route::get('/hello-world-invokable', HelloWorldController::class);
+
+// define by controller's method
+Route::get('/hello-world-method', [HelloWorldMethodController::class, 'show']);
+
+// define by resource controller
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
