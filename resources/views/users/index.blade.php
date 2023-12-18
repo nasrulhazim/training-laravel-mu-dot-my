@@ -8,15 +8,15 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="flex justify-end m-4">
+                <div class="flex justify-end m-4  overflow-x-auto">
                     {{ $users->links() }}
                 </div>
-                <table class="m-4">
+                <table class="m-4 ">
                     <thead>
                         <tr>
-                            <th class="w-1/3">Name</th>
-                            <th class="w-1/3">E-mail</th>
-                            <th class="w-1/3">Actions</th>
+                            <th class="w-1/4">Name</th>
+                            <th class="w-2/3">E-mail</th>
+                            <th class="w-1/4">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +25,13 @@
                                 <td class="p-2">{{ $user->name }}</td>
                                 <td class="p-2">{{ $user->email }}</td>
                                 <td class="p-2">
-                                    <a href="{{ route('users.show', $user) }}" class="px-2 py-1">👁️</a>
-                                    <a href="{{ route('users.edit', $user) }}" class="px-2 py-1">✏️</a>
+                                    <div class="grid grid-flow-col grid-cols-3 gap-x-2">
+                                        <a href="{{ route('users.show', $user) }}" class="py-1 px-2">👁️</a>
+                                        <a href="{{ route('users.edit', $user) }}" class="py-1 px-2">✏️</a>
+                                        <div class="py-1 px-2">
+                                            🗑️
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
