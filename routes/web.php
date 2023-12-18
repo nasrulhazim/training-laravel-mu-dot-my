@@ -7,13 +7,19 @@ use Illuminate\Support\Facades\Route;
 // define route by closure
 Route::get('/hello-world', function() {
     return 'hello-world';
-});
+})->name('hello-world-closure');
 
 // define by invokable controller
-Route::get('/hello-world-invokable', HelloWorldController::class);
+Route::get(
+    '/hello-world-invokable',
+    HelloWorldController::class
+)->name('hello-world-invokable');
 
 // define by controller's method
-Route::get('/hello-world-method', [HelloWorldMethodController::class, 'show']);
+Route::get(
+    '/hello-world-method',
+    [HelloWorldMethodController::class, 'show']
+)->name('hello-world-method');
 
 // define by resource controller
 
