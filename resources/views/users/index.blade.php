@@ -24,7 +24,10 @@
                             <tr>
                                 <td class="p-2">{{ $user->name }}</td>
                                 <td class="p-2">{{ $user->email }}</td>
-                                <td class="p-2"></td>
+                                <td class="p-2">
+                                    <a href="{{ route('users.show', $user) }}" class="px-2 py-1">👁️</a>
+                                    <a href="{{ route('users.edit', $user) }}" class="px-2 py-1">✏️</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
