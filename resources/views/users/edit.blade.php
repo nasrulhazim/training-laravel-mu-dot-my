@@ -28,6 +28,18 @@
                         <x-input-error for="email" class="mt-2" />
                     </div>
 
+                    <div class="col-span-6 sm:col-span-4 mb-4">
+                        <x-label for="password" value="{{ __('New Password') }}" />
+                        <x-input id="password" type="password" class="mt-1 block w-full" name="password" autocomplete="new-password" />
+                        <x-input-error for="password" class="mt-2" />
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-4 mb-4">
+                        <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                        <x-input id="password_confirmation" type="password" class="mt-1 block w-full" name="password_confirmation" autocomplete="new-password" />
+                        <x-input-error for="password_confirmation" class="mt-2" />
+                    </div>
+
                     <x-button>Submit</x-button>
                 </form>
             </div>

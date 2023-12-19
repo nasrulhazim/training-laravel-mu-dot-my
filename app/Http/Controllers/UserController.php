@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -9,6 +10,8 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    use PasswordValidationRules;
+
     /**
      * Display a listing of the resource.
      */
@@ -93,17 +96,29 @@ class UserController extends Controller
             $email_rules[] = 'unique:users';
         }
 
-        // validate
-        $this->validate($request, [
+        $validation_rules = [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => $email_rules,
-        ]);
+        ];
 
-        // update
-        $user->update([
+        if($request->has('password') && !empty($request->password)) {
+            $validation_rules['password'] = $this->passwordRules();
+        }
+
+        // validate
+        $this->validate($request, $validation_rules);
+
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
-        ]);
+        ];
+
+        if($request->has('password')) {
+            $data[] = Hash::make($request->password);
+        }
+
+        // update
+        $user->update($data);
 
         // flash message
         session()->flash('message', [
@@ -120,6 +135,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
     }
 }
