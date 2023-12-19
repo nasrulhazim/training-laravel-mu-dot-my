@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -84,7 +84,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // add validation rule unique
+        // if the email input and the current user email
+        // in database is not the same.
+        $email_rules = ['required', 'string', 'email', 'max:255'];
+
+        if($request->email != $user->email) {
+            $email_rules[] = 'unique:users';
+        }
+
+        // validate
+        $this->validate($request, [
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => $email_rules,
+        ]);
+
+        // update
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        // flash message
+        session()->flash('message', [
+            'content' => 'You have successfully update the user.',
+            'type' => 'success'
+        ]);
+
+        // redirect
+        return redirect()->route('users.show', $user);
     }
 
     /**
