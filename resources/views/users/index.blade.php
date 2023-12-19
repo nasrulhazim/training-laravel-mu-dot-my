@@ -30,20 +30,26 @@
                                 <td class="p-2">{{ $user->email }}</td>
                                 <td class="p-2">
                                     <div class="grid grid-flow-col grid-cols-3 gap-x-2">
-                                        <a href="{{ route('users.show', $user) }}" class="py-1 px-2">👁️</a>
-                                        <a href="{{ route('users.edit', $user) }}" class="py-1 px-2">✏️</a>
-                                        <div class="py-1 px-2">
-                                            <form method="POST" action="{{ route('users.destroy', $user) }}">
-                                                @csrf @method('DELETE')
+                                        @can('view', $user)
+                                            <a href="{{ route('users.show', $user) }}" class="py-1 px-2">👁️</a>
+                                        @endcan
+                                        @can('update', $user)
+                                            <a href="{{ route('users.edit', $user) }}" class="py-1 px-2">✏️</a>
+                                        @endcan
+                                        @can('delete', $user)
+                                            <div class="py-1 px-2">
+                                                <form method="POST" action="{{ route('users.destroy', $user) }}">
+                                                    @csrf @method('DELETE')
 
-                                                <div class="px-1 cursor-pointer"
-                                                    onclick="if(confirm('Are you sure want to delete {{ $user->name }}?')) {
+                                                    <div class="px-1 cursor-pointer"
+                                                        onclick="if(confirm('Are you sure want to delete {{ $user->name }}?')) {
                                                         this.parentElement.submit()
                                                     }">
-                                                    🗑️
-                                                </div>
-                                            </form>
-                                        </div>
+                                                        🗑️
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

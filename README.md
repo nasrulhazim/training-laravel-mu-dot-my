@@ -106,3 +106,66 @@ Then update the email and run the following:
 ```bash
 \App\Models\User::where('email','your@email.com')->update(['password' => Hash::make('password')]);
 ```
+
+## Authorization: Policy
+
+Create policy:
+
+```bash
+php artisan make:policy UserPolicy --model=User
+```
+
+Using policy in Blade file:
+
+```php
+@can('view', $user)
+    ...
+@endcan
+```
+
+Using policy in controller:
+
+```php
+public function show(User $user)
+{
+    $this->authorize('view', $user);
+}
+```
+
+Using policy in resource controller:
+
+```php
+public function __construct()
+{
+    $this->authorizeResource(\App\Models\User::class);
+}
+```
+
+Using policy from current user logged in.
+
+```php
+if(auth()->user()->can('viewAny', \App\Models\User::class)) {
+    ...
+}
+```
+
+Using policy from user's object / current user logged in.
+
+```php
+if($user->can('viewAny', \App\Models\User::class)) {
+    ...
+}
+```
+
+Using custom policy name:
+
+```php
+public function download(User $user): bool
+{
+    return true;
+}
+```
+
+```php
+$user->can('download', \App\Models\User::class);
+```

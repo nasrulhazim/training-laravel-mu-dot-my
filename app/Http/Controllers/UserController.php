@@ -12,6 +12,11 @@ class UserController extends Controller
 {
     use PasswordValidationRules;
 
+    public function __construct()
+    {
+        $this->authorizeResource(User::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -71,6 +76,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // $this->authorize('view', $user);
+
         return view('users.show', compact('user'));
     }
 
