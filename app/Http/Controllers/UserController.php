@@ -136,7 +136,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if(auth()->user()->id == $user->id) {
-            throw new \Exception('You cannot kill yourself.', 500);
+            // flash message
+            session()->flash('message', [
+                'content' => 'You cannot delete yourself.',
+                'type' => 'error'
+            ]);
+
+            return redirect()->route('users.index');
         }
 
         $user->delete();
