@@ -7,6 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-end m-4  overflow-x-auto">
+                <a href="{{ route('users.create') }}" class="bg-indigo-700 rounded-md text-white py-2 px-4 hover:bg-indigo-500">Create New User</a>
+            </div>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="flex justify-end m-4  overflow-x-auto">
                     {{ $users->links() }}

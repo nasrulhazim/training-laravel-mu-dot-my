@@ -32,6 +32,22 @@
                 </header>
             @endif
 
+            @if(session()->has('message'))
+                @php
+                    $color = match (session('message.type')) {
+                         'success' => 'bg-green-300',
+                         'error' => 'bg-red-300',
+                         'info' => 'bg-blue-300',
+                         default => 'bg-white'
+                    };
+                @endphp
+                <header class="{{ $color }} shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ session('message.content') }}
+                    </div>
+                </header>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
