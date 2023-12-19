@@ -95,3 +95,14 @@ Seed data specific to seeder class:
 php artisan db:seed --class=DummySeeder
 ```
 
+## Update Password throught Tinker
+
+```bash
+php artisan tinker
+```
+
+Then update the email and run the following:
+
+```bash
+\App\Models\User::where('email','your@email.com')->update(['password' => Hash::make('password')]);
+```
